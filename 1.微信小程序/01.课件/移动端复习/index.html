@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="initial-scale=1,user-scalable=no">
+    <!-- initial-scale = 设备独立像素宽度(视觉视口)/布局视口宽度 = 375/375 -->
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            /* 
+                width:50%;
+                width:50vw;
+                width:5rem;
+             */
+            /* 100vw=屏幕宽度 100vh=屏幕高度
+                vw兼容性不行,所以才使用rem
+                rem适配的基础是viewport实现理想视口
+                rem=>root em(根节点字体大小,html)
+            */
+            width:187px;
+        }
+        html{
+            font-size:100px;
+        }
+        html,body{
+            width:100%;
+            height:100%;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- 如何获取布局视口宽度
+        布局视口=>html标签
+        宽度:document.documentElement.clientWidth
+        没做任何处理:默认980px    
+        viewport标签能改变的只有布局视口宽度
+        
+        <meta name="viewport" content="width=device-width">实现理想视口
+    -->
+    <div style="width:200px;">
+        <img src="./1.jpg" alt="">
+    </div>
+    <script>
+        // rem适配
+        // width=屏幕百分之十的宽度=10vw
+        // 除以多少份是自己定的,没有标准
+        // var width = document.documentElement.clientWidth/10;
+        // //1rem=10vw
+        // document.documentElement.style.fontSize=`${width}px`;
+
+        //viewport适配
+        var width = document.documentElement.clientWidth;
+        //算出缩放比例
+        var scale = width/375;
+        console.log(scale)
+        document.querySelector('meta[name=viewport]').setAttribute('content',`initial-scale=${scale}`);
+    </script>
+</body>
+</html>
