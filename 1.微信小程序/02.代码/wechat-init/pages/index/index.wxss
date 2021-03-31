@@ -1,19 +1,18 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
+/* pages/index/index.wxss */
+page{
+  height:100%;
+}
+
+.indexContainer{
+  height:100%;
+  display:flex;
   flex-direction: column;
-  align-items: center;
-  color: #aaa;
+  align-items:center;
+  justify-content: space-around;
 }
 
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
+.huahua{
+  width:375rpx;
+  height:375rpx;
   border-radius: 50%;
-}
-
-.usermotto {
-  margin-top: 200px;
 }
