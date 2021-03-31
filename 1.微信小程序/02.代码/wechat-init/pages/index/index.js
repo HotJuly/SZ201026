@@ -4,14 +4,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    msg:"花花"
   },
+  // 面试题:如何实现对象深拷贝
+  //  JSON.parse(JSON.stringify(obj))乞丐版
+
+  // data(){
+  //   return {}
+  //   {}==={}
+  //   // new Object() === new Object()
+  // }
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    console.log('0',this.data.msg)
+    this.setData({
+        msg:3
+    })
+    console.log('3', this.data.msg)
+    this.setData({
+        msg:4
+    })
+    console.log('4', this.data.msg)
+
   },
 
   /**

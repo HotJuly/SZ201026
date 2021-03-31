@@ -1,5 +1,5 @@
 <view class="indexContainer">
   <image class="huahua" src="/static/nvsheng.jpg"></image>
-  <text>你好,华华</text>
+  <text>你好,{{msg}}</text>
   <button>欢迎来到尚硅谷</button>
 </view>
