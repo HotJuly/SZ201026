@@ -1,0 +1,42 @@
+<view class="indexContainer">
+  <swiper
+   indicator-dots
+   indicator-color="ivory"
+   indicator-active-color="#d43c33"
+   >
+    <swiper-item>
+      <image class="huahua" src="/static/images/nvsheng.jpg"></image>
+    </swiper-item>
+    <swiper-item>
+      <image  class="huahua" src="/static/images/nvsheng.jpg"></image>
+    </swiper-item>
+    <swiper-item>
+      <image  class="huahua" src="/static/images/nvsheng.jpg"></image>
+    </swiper-item>
+    <swiper-item>
+      <image  class="huahua" src="/static/images/nvsheng.jpg"></image>
+    </swiper-item>
+  </swiper>
+  <view class="nav">
+    <view class="navItem">
+      <text class="iconfont icon-meirituijian-"></text>
+      <text class="text">每日推荐</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-gedan1"></text>
+      <text class="text">每日推荐</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-icon-ranking"></text>
+      <text class="text">每日推荐</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-diantai"></text>
+      <text class="text">每日推荐</text>
+    </view>
+    <view class="navItem">
+      <text class="iconfont icon-zhiboguankanliangbofangsheyingshexiangjixianxing"></text>
+      <text class="text">每日推荐</text>
+    </view>
+  </view>
+</view>
