@@ -1,2 +1,2 @@
 <!--pages/logs/logs.wxml-->
-<text>pages/logs/logs.wxml</text>
+<text bindtap="toIndex">pages/logs/logs.wxml</text>

@@ -18,16 +18,38 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  handleClick(){
+    this.setData({
+      msg:"我是修改之后的数据"
+    })
+  },
+  handleParent() {
+    // console.log('handleParent')
+  },
+  handleChildren(){
+    // console.log('handleChildren')
+    // 可以使用相对路径,也可以使用绝对路径
+
+    //这个API会保留当前页面
+    wx.navigateTo({
+      url:"/pages/logs/logs"
+    })
+
+    //这个API会关闭当前页面
+    // wx.redirectTo({
+    //   url: "../logs/logs"
+    // })
+  },
   onLoad: function (options) {
-    console.log('0',this.data.msg)
-    this.setData({
-        msg:3
-    })
-    console.log('3', this.data.msg)
-    this.setData({
-        msg:4
-    })
-    console.log('4', this.data.msg)
+    // console.log('0',this.data.msg)
+    // this.setData({
+    //     msg:3
+    // })
+    // console.log('3', this.data.msg)
+    // this.setData({
+    //     msg:4
+    // })
+    // console.log('4', this.data.msg)
 
   },
 

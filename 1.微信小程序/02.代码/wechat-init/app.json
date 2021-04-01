@@ -3,5 +3,6 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/test/test"
-  ]
+  ],
+  "sitemapLocation": "sitemap20.json"
 }

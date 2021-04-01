@@ -1,5 +1,16 @@
 <view class="indexContainer">
   <image class="huahua" src="/static/nvsheng.jpg"></image>
-  <text>你好,{{msg}}</text>
-  <button>欢迎来到尚硅谷</button>
+  <text bindtap="handleClick">你好,{{msg}}</text>
+  <view bindtap="handleParent">
+    <button bindtap="handleChildren">欢迎来到尚硅谷</button>
+  </view>
+  <!-- 不允许text嵌套其他组件 -->
+  <!-- <text bindtap="handleParent">
+    <button bindtap="handleChildren">欢迎来到尚硅谷</button>
+  </text> -->
+
+  
+  <!-- <view capture-bind:tap="handleParent">
+    <button capture-bind:tap="handleChildren">欢迎来到尚硅谷</button>
+  </view> -->
 </view>
