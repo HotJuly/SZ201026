@@ -1,0 +1,17 @@
+通过观察可以发现我们需要借助一个button按钮实现授权弹窗功能
+1.使用button组件
+2.添加标签属性open-type="getUserInfo"(经过这一步就可以看到授权弹窗)
+3.通过bindgetuserinfo的回调函数获取用户信息
+4.将数据更新到data中,实现动态显示
+
+二次登陆免授权
+通过wx.getUserInfo({success:(detail)=>{}})可以获取用户已经授权过的信息
+注意:该API在用户未授权状态下,无法使用
+
+
+最新版API
+wx.getUserProfile(使用方法与wx.getUserInfo相同,必传参数desc);
+
+一个很无语的组件open-data
+对于开发者:只能看不能用
+

@@ -1,6 +1,19 @@
 <view class="indexContainer">
-  <image class="huahua" src="/static/nvsheng.jpg"></image>
-  <text bindtap="handleClick">你好,{{msg}}</text>
+  <image class="huahua" wx:if="{{userInfo.avatarUrl}}" src="{{userInfo.avatarUrl}}"></image>
+  <!-- <button class="huahua"
+  wx:else
+  open-type="getUserInfo"
+  bindgetuserinfo="getUserInfo"
+  >获取用户信息</button> -->
+  
+  <!-- <button class="huahua"
+  wx:else
+  bindtap="getUserProfile"
+  >获取用户信息</button> -->
+
+  <open-data class="huahua" type="userAvatarUrl"></open-data>
+
+  <text bindtap="handleClick">你好,{{userInfo.nickName}}</text>
   <view bindtap="handleParent">
     <button bindtap="handleChildren">欢迎来到尚硅谷</button>
   </view>
