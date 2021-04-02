@@ -35,6 +35,7 @@ Page({
     //   recommendList: recommendData.data.result
     // })
 
+    // 用于请求banner轮播图数据
     ajax('/banner', { type: 2 })
       .then((bannerData)=>{
         this.setData({
@@ -42,6 +43,7 @@ Page({
         })
     })
 
+    // 用于请求推荐歌曲数据
     ajax('/personalized')
       .then((recommendData) => {
         this.setData({
@@ -49,6 +51,32 @@ Page({
         })
     })
 
+  let arr = [1,5,6,10];
+  let index =0;
+  let topList = [];
+    // 用于请求排行榜数据
+    while(arr.length>index){
+    ajax('/top/list',{idx:arr[index++]})
+      .then((topData) => {
+        let obj = {};
+        // 以下两步用于处理数据格式
+        obj.name=topData.data.playlist.name;
+        obj.list = topData.data.playlist.tracks.slice(0, 3);
+
+        // 将处理之后的榜单数据放入数组
+        topList.push(obj);
+
+        // 将数组更新至data中,进行显示
+        this.setData({
+          topList
+        })
+
+        // console.log('topData', obj);
+        // this.setData({
+        //   recommendList: recommendData.data.result
+        // })
+        })
+    }
 
     // wx.request({
     //   url: "http://localhost:3000/personalized",

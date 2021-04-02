@@ -83,3 +83,45 @@
    /* 告知文本排列方向 */
    -webkit-box-orient:vertical;
 }
+
+.topContainer .topSwiper{
+  height:400rpx;
+}
+
+.topContainer .topSwiper .topItem{
+  width:97%;
+  background:pink;
+}
+
+.topContainer .topSwiper .topItem .topContent .topImg{
+  width:100rpx;
+  height:100rpx;
+  flex-shrink: 0;
+}
+
+.topContainer .topSwiper .topItem .topContent .item{
+  /*
+    如何将元素变成块元素:
+      1.display:block
+      2.父节点开启display:flex
+      3.float:left|right
+      4.position:absolute|fixed
+  */
+  display:flex;
+  line-height:100rpx;
+  padding:10rpx 0;
+}
+
+.topContainer .topSwiper .topItem .topContent .item .topIndex{
+  width:100rpx;
+  height:100rpx;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.topContainer .topSwiper .topItem .topContent .item .songName{
+  flex-grow:1;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}

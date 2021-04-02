@@ -52,5 +52,19 @@
   <view class="topContainer">
     <!-- NavHeader -->
     <NavHeader title="排行榜" moreTitle="热歌风向标"/>
+    <swiper class="topSwiper" next-margin="50">
+      <swiper-item wx:for="{{topList}}" wx:key="name">
+        <view class="topItem">
+          <text class="topName">{{item.name}}</text>
+          <view class="topContent">
+            <view class="item" wx:for="{{item.list}}" wx:for-item="song" wx:for-index="songIndex" wx:key="name">
+              <image class="topImg" src="{{song.al.picUrl}}"></image>
+              <text class="topIndex">{{songIndex+1}}</text>
+              <text class="songName">{{song.name}}</text>
+            </view>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
   </view>
 </view>
