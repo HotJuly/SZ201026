@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //js中6个falsey值:false,0,NaN,"",undefined,null
+
+        //基础数据类型VS基础数据类型
+        // 类型不同->toNumber
+
+
+        console.log("1",true==1);   //true  =>  1===1
+        console.log("2",true=="1"); //true  =>  1===1
+        console.log("3","2"==1);    //false =>  2===1
+        console.log("4","a"==1);    //false =>  NaN===1
+        console.log("5",true=="true");  //true|false    1===NaN
+        console.log("6",true=="false"); //true|false    1===NaN
+
+        //对象数据类型VS对象数据类型
+        //比较地址值
+        console.log("7",[]==[]);    // new Array() == new Array()   false
+        console.log("8",{}=={});    // new Object() == new Object()   false
+        console.log("9",[]===[]);    // new Array() === new Array()   false
+        console.log("10",{}==={});    // new Array() === new Array()   false
+
+
+        //对象数据类型VS基本数据类型
+        //valueOf->toString
+        console.log("11",[]!==[]);  //true
+        console.log("12",[]==![]);  //false     []==false =>    ""==false   =>  0===0
+        console.log("13",{}!=={});   //true
+        console.log("14",{}==!{});  //false     {}==false =>    "[object Object]"==false = NaN===0
+
+        console.log('15',new Number(1)==1)  //true  {1}==1 => 1==1
+    </script>
+</body>
+</html>
