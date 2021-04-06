@@ -61,11 +61,12 @@ Page({
     try {
       result = await ajax('/login/cellphone', {
         phone,
-        password
+        password,
+        isLogin:true
       });
-      // console.log('result', result)
+      // console.log('loginResult', result)
     } catch (e) {
-      console.log('e',e)
+      // console.log('e',e)
       let { code } = result;
       if (code === 501 || code === 400 || code === 509) {
         wx.showToast({

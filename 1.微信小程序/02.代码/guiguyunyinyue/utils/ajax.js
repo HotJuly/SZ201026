@@ -22,9 +22,20 @@ export default function (url, data={}, method="GET"){
       url: config.mpHost + url,
       data,
       method,
+      header:{
+        cookie:wx.getStorageSync("cookie")
+      },
       success: (res) => {
-        console.log("res", res)
+        // console.log("res", res);
         // result = res;
+        if(data.isLogin){
+          //只有登录接口才能进来保存cookie
+          //思路一:通过url进行判断,可行,但是不稳妥
+          let cookie = res.cookies.find((item)=>{
+            return item.startsWith('MUSIC_U');
+          });
+          wx.setStorageSync('cookie',cookie)
+        }
         resolve(res.data);
       },
       fail(error) {
