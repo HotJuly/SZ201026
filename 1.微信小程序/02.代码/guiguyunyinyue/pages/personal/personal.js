@@ -1,4 +1,5 @@
 // pages/personal/personal.js
+import ajax from '../../utils/ajax.js';
 Page({
 
   /**
@@ -9,12 +10,17 @@ Page({
     moveTransition:"",
     userInfo:{}
   },
+
   toLogin(){
+    // 如果用户已经登录,就不进行跳转
+    if (this.data.userInfo.nickname)return;
+
     //跳转到login页面
     wx.navigateTo({
       url: '/pages/login/login',
     })
   },
+
   handleTouchStart(event){
     //touches用于收集屏幕上所有的手指
     //changedTouches用于收集屏幕上变化的手指
@@ -66,11 +72,21 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow:async function () {
     // 读取Storage中用户信息
     let userInfo = JSON.parse(wx.getStorageSync("userInfo") || "{}");
     this.setData({
       userInfo
+    });
+    let playListData = await ajax('/user/record',{
+      type:1,
+      uid:userInfo.userId
+    });
+    // console.log('playListData', playListData)
+    this.setData({
+      playList: playListData.weekData.map(function(item){
+        return item.song.al.picUrl
+      })
     })
   },
 

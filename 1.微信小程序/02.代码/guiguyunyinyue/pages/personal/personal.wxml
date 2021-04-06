@@ -56,8 +56,14 @@
     </view>
 
     <view class="playContent">
-        <view class="noData">暂时没有数据</view>
+      <view class="playList">
+        <view class="playTitle">最近播放</view>
+        <scroll-view class="playScroll" scroll-x enable-flex>
+          <image src="{{item}}" wx:for="{{playList}}" wx:key="item"></image>
+        </scroll-view>
+        <!-- <view class="noData">暂时没有数据</view> -->
       </view>
+    </view>
 
     <view class="cardList">
       <view class="card-item">
