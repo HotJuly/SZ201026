@@ -25,10 +25,11 @@ export default function (url, data={}, method="GET"){
       success: (res) => {
         console.log("res", res)
         // result = res;
-        resolve(res);
+        resolve(res.data);
       },
       fail(error) {
-        console.log("error", error)
+        console.log("error", error);
+        reject(error)
       }
     })
   })  

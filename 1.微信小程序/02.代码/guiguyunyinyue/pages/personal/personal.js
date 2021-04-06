@@ -5,14 +5,55 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    moveDistance:0,
+    moveTransition:"",
+    userInfo:{}
   },
+  toLogin(){
+    //跳转到login页面
+    wx.navigateTo({
+      url: '/pages/login/login',
+    })
+  },
+  handleTouchStart(event){
+    //touches用于收集屏幕上所有的手指
+    //changedTouches用于收集屏幕上变化的手指
+    //获取当前手指位置:event.touches[0].clientY
+    this.startY = event.touches[0].clientY;
+    this.setData({
+      moveTransition: ""
+    })
+    // console.log('handleTouchStart', startY)
+  },
+  handleTouchMove(event) {
+    let moveY = event.touches[0].clientY;
+    // console.log('handleTouchMove', moveY);
+    let moveDistance = moveY - this.startY;
+    // console.log('moveDistance', moveDistance);
+
+    // 边界值限制,限制不能往上走,往下最多到80rpx
+    if(moveDistance<=0||moveDistance>80)return ;
+    this.setData({
+      moveDistance
+    })
+  },
+  handleTouchEnd(){
+    this.setData({
+      moveDistance:0,
+      moveTransition:"transform 1s"
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // 读取Storage中用户信息
+    // let userInfo = JSON.parse(wx.getStorageSync("userInfo")||"{}");
+    // this.setData({
+    //   userInfo
+    // })
   },
 
   /**
@@ -26,7 +67,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // 读取Storage中用户信息
+    let userInfo = JSON.parse(wx.getStorageSync("userInfo") || "{}");
+    this.setData({
+      userInfo
+    })
   },
 
   /**

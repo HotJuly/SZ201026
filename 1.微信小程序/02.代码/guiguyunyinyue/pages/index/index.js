@@ -39,7 +39,7 @@ Page({
     ajax('/banner', { type: 2 })
       .then((bannerData)=>{
         this.setData({
-          banners: bannerData.data.banners
+          banners: bannerData.banners
         })
     })
 
@@ -47,7 +47,7 @@ Page({
     ajax('/personalized')
       .then((recommendData) => {
         this.setData({
-          recommendList: recommendData.data.result
+          recommendList: recommendData.result
         })
     })
 
@@ -60,8 +60,8 @@ Page({
       .then((topData) => {
         let obj = {};
         // 以下两步用于处理数据格式
-        obj.name=topData.data.playlist.name;
-        obj.list = topData.data.playlist.tracks.slice(0, 3);
+        obj.name=topData.playlist.name;
+        obj.list = topData.playlist.tracks.slice(0, 3);
 
         // 将处理之后的榜单数据放入数组
         topList.push(obj);
