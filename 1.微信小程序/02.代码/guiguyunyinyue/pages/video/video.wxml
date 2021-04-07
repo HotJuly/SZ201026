@@ -25,30 +25,30 @@
   <!-- videoList区域 -->
   <scroll-view class="videoList" scroll-y>
     <view class="videoItem" wx:for="{{videoList}}" wx:key="title">
-      <!-- <image
+      <image
       id="{{item.data.vid}}"  
       class="common" 
       src="{{item.data.coverUrl}}"
       wx:if="{{currentId!==item.data.vid}}"
       bindtap="handleClick"
-      ></image> -->
-
-      <!-- <video 
-      id="{{item.data.vid}}" 
-      class="common" 
-      src="{{item.data.urlInfo.url}}"
-      bindplay="handlePlay"
-      wx:else
-      ></video> -->
+      ></image>
 
       <video 
       id="{{item.data.vid}}" 
       class="common" 
       src="{{item.data.urlInfo.url}}"
       bindplay="handlePlay"
+      wx:else
+      ></video>
+
+      <!-- <video 
+      id="{{item.data.vid}}" 
+      class="common" 
+      src="{{item.data.urlInfo.url}}"
+      bindplay="handlePlay"
       object-fit="cover"
       poster="{{item.data.coverUrl}}"
-      ></video>
+      ></video> -->
 
       <view class="content">{{item.data.title}}</view>
       <view class="footer">

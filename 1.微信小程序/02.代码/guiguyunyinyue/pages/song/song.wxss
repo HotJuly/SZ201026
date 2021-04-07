@@ -1,0 +1,108 @@
+/* pages/song/song.wxss */
+.songContainer{
+  background: rgba(0,0,0,0.5);
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  height:100%;
+}
+
+.songContainer .keng{
+  width:60rpx;
+  height:60rpx;
+  background: white;
+  border-radius: 50%;
+  z-index:99;
+}
+
+.songContainer .needle{
+  width:192rpx;
+  height:274rpx;
+  position: relative;
+  top:-36rpx;
+  left:58rpx;
+  z-index:98;
+  transform: rotateZ(-30deg);
+  transform-origin: 40rpx 0;
+  transition: transform 1s;
+}
+
+.songContainer.isplaying .needle{
+  transform: rotateZ(0deg);
+}
+
+@keyframes move{
+  /* 
+    from,to
+    0%,50%,100%
+   */
+   from{
+    transform: rotateZ(0deg);
+   }
+   to{
+    transform: rotateZ(360deg);
+   }
+}
+
+.songContainer .discContainer{
+  width:598rpx;
+  height:598rpx;
+  position: relative;
+  top:-180rpx;
+  animation: move 4s linear infinite 1s;
+  animation-play-state: paused;
+  /* transition:transform 4s; */
+  /* flex-shrink: 0; */
+}
+
+.songContainer.isplaying .discContainer{
+  animation-play-state: running;
+}
+
+.songContainer .discContainer .disc{
+  width:100%;
+  height:100%;
+  z-index:88;
+  position: relative;
+  /*
+    z-index生效条件(满足其中一种即可)
+      1.开启定位
+      2.是flex的直系子元素
+  */
+}
+
+.songContainer .discContainer .bigImg{
+  width:370rpx;
+  height:370rpx;
+  position: absolute;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  margin: auto;
+  z-index:87;
+}
+
+
+/* musicControl */
+.musicControl {
+  position: absolute;
+  bottom: 40rpx;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1rpx solid #fff;
+}
+
+.musicControl text {
+  width: 20%;
+  text-align: center;
+  font-size: 50rpx;
+  color: #fff;
+  height: 120rpx;
+  line-height: 120rpx;
+}
+.musicControl text.big {
+  font-size: 80rpx;
+}
