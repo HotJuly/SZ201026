@@ -3,7 +3,7 @@
   <view class="header">
     <image src="/static/images/video/video.jpg"></image>
     <input type="text" placeholder="光辉岁月" placeholder-class="placeholder"></input>
-    <image src="/static/images/logo.png"></image>
+    <image src="/static/images/logo.png" bindtap="testApi"></image>
   </view>
 
   <!-- 导航栏区域 -->
@@ -25,7 +25,31 @@
   <!-- videoList区域 -->
   <scroll-view class="videoList" scroll-y>
     <view class="videoItem" wx:for="{{videoList}}" wx:key="title">
-      <video class="common" src="{{item.data.urlInfo.url}}"></video>
+      <!-- <image
+      id="{{item.data.vid}}"  
+      class="common" 
+      src="{{item.data.coverUrl}}"
+      wx:if="{{currentId!==item.data.vid}}"
+      bindtap="handleClick"
+      ></image> -->
+
+      <!-- <video 
+      id="{{item.data.vid}}" 
+      class="common" 
+      src="{{item.data.urlInfo.url}}"
+      bindplay="handlePlay"
+      wx:else
+      ></video> -->
+
+      <video 
+      id="{{item.data.vid}}" 
+      class="common" 
+      src="{{item.data.urlInfo.url}}"
+      bindplay="handlePlay"
+      object-fit="cover"
+      poster="{{item.data.coverUrl}}"
+      ></video>
+
       <view class="content">{{item.data.title}}</view>
       <view class="footer">
         <image class="avatar" src="{{item.data.creator.avatarUrl}}"></image>
@@ -39,7 +63,12 @@
             <text class="iconfont icon-pinglun1"></text>
             <text class="count">{{item.data.commentCount}}</text>
           </text>
-          <button class="item btn">
+          <button 
+          class="item btn" 
+          open-type="share" 
+          data-title="{{item.data.title}}"
+          data-imageurl="{{item.data.coverUrl}}"
+          >
             <text class="iconfont icon-gengduo"></text>
           </button>
         </view>

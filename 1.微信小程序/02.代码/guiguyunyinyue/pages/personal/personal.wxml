@@ -59,7 +59,7 @@
       <view class="playList">
         <view class="playTitle">最近播放</view>
         <scroll-view class="playScroll" scroll-x enable-flex>
-          <image src="{{item}}" wx:for="{{playList}}" wx:key="item"></image>
+          <image lazy-load src="{{item}}" wx:for="{{playList}}" wx:key="item"></image>
         </scroll-view>
         <!-- <view class="noData">暂时没有数据</view> -->
       </view>

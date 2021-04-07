@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* async
+            1.async函数返回值一定是一个promise对象
+            2.内部代码全部执行结束,返回的promise对象才会变成完成状态
+            3.如果内部代码出现错误,或者await遇到失败的promise,就会立马结束函数执行,返回的promise对象立马变为失败状态
+            4.await后面的代码,可以理解为放在.then中执行
+        */
+        async function A(){
+            await new Promise((resolve,reject)=>{
+                setTimeout(reject,2000,3);
+            })
+            console.log(1)
+            return 123;
+        }
+        console.log(A());
+        console.log(2);
+    </script>
+</body>
+</html>

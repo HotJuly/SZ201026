@@ -1,0 +1,22 @@
+问题:同一页面存在多个video时，video无法正常播放一直在加载转圈
+解决方法:不建议同个页面使用多个video组件，建议不超过3个video，如果要实现video列表功能，请进行优化（image列表，选中时将image替换成video）
+实现:
+	使用image列表替代video列表
+
+
+
+问题:使用image标签替换video标签,可以解决上述问题,但是图片没有播放功能
+需求:当用户点击image组件,控制对应的video组件自动播放
+拆解:
+	1.当用户点击image组件
+		事件源:image组件
+		事件名:tap
+	2.控制对应的video组件自动播放
+		拆解:
+			1.如何找到image组件对应的video组件
+				需要控制image和video之间的切换(wx:if和wx:else)
+					通过data数据,控制组件之间的切换	
+				通过给两个标签绑定同一个标签属性,用于绑定他们的关系
+			2.如何控制video组件自动播放
+				该需求与视频页面BUG1相同
+				通过videoContext去控制对应的video组件(需要video组件的id)

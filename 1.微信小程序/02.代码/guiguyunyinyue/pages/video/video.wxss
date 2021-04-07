@@ -48,6 +48,9 @@
   border-bottom:4rpx solid red;
 }
 
+.videoList{
+  height:calc( 100vh - 76rpx - 96rpx - 40rpx);
+}
 
 .videoList .common {
   width: 100%;
