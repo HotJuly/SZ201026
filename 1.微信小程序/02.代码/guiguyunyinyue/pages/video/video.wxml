@@ -23,7 +23,14 @@
   </scroll-view>
 
   <!-- videoList区域 -->
-  <scroll-view class="videoList" scroll-y>
+  <scroll-view
+   class="videoList"
+   scroll-y
+   refresher-enabled
+   refresher-triggered="{{isLoading}}"
+   bindrefresherrefresh="handlePullDown"
+   bindscrolltolower="handleReachBottom"
+   >
     <view class="videoItem" wx:for="{{videoList}}" wx:key="title">
       <image
       id="{{item.data.vid}}"  

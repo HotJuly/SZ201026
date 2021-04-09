@@ -1,0 +1,28 @@
+功能一:下拉刷新
+需求:当用户下拉scroll-view区域时,自动请求最新数据
+拆解:
+	1.当用户下拉scroll-view区域时
+		小程序中触发下拉动作的渠道:
+			1.整个页面下拉
+				1.需要app.json->window->enablePullDownRefresh:true开启下拉动画
+				2.在Page.onPullDownRefresh声明回调函数
+			2.scroll-view区域下拉
+				1.开启下拉动画scroll-view组件属性refresher-enabled:true
+				2.绑定事件监听:监听用户下拉操作->事件名称refresherrefresh
+				3.控制下拉动画自动关闭
+					可以通过refresher-triggered可以控制下拉动画的开关
+	2.自动请求最新数据
+		使用之前封装好的getVideoList方法即可
+
+
+功能二:上拉加载更多
+需求:当用户上拉scroll-view区域触底时,自动请求更多数据
+拆解:
+	1.当用户上拉scroll-view区域触底时
+		小程序中触发下拉动作的渠道:
+			1.整个页面上拉触底
+				1.在Page.onReachBottom声明回调函数,监听用户上拉页面触底
+			2.scroll-view区域上拉触底
+				1.绑定事件监听:监听用户上拉触底操作->事件名称:scrolltolower
+	2.自动请求更多数据
+			由于网易没有加载更多的接口,所以只能将旧数据复制一份

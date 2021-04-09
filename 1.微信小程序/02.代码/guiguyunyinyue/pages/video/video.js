@@ -8,7 +8,8 @@ Page({
   data: {
     navList:[],
     navId:null,
-    currentId:null
+    currentId:null,
+    isLoading:false
   },
 
   // 头部导航区域点击事件回调
@@ -93,6 +94,28 @@ Page({
     videoContext.play();
   },
 
+  // 用于监听用户下拉scroll-view操作
+  async handlePullDown(){
+    // console.log('handlePullDown')
+    wx.showLoading({
+      title:"加载中,请稍后..."
+    });
+    await this.getVideoList();
+    wx.hideLoading();
+    this.setData({
+      isLoading:false
+    });
+  },
+
+  handleReachBottom(){
+    // console.log('handleReachBottom')
+    setTimeout(() => {
+      this.setData({
+        videoList: this.data.videoList.concat(this.data.videoList.slice(0, 8))
+      })
+    },1000);
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -146,14 +169,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console.log('onPullDownRefresh');
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log('onReachBottom');
   },
 
   /**
