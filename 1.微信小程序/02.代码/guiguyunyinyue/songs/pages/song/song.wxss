@@ -1,4 +1,9 @@
 /* pages/song/song.wxss */
+@import "/static/iconfont/iconfont.wxss";
+page{
+  height:100%;
+}
+
 .songContainer{
   background: rgba(0,0,0,0.5);
   display:flex;
@@ -106,3 +111,34 @@
 .musicControl text.big {
   font-size: 80rpx;
 }
+
+/* 进度条开始 */
+.barContainer{
+  display:flex;
+  align-items:center; 
+}
+
+.barContainer .wrap{
+  width:450rpx;
+  height:4rpx;
+  background:rgba(0,0,0,0.4);
+  margin:0 20rpx;
+}
+
+.barContainer .wrap .inner{
+  width:20%;
+  height:4rpx;
+  background:red;
+  position: relative;
+}
+
+.barContainer .wrap .inner .point{
+  width:12rpx;
+  height:12rpx;
+  position: absolute;
+  right:-6rpx;
+  top:-4rpx;
+  background:white;
+  border-radius: 50%;
+}
+/* 进度条结束 */

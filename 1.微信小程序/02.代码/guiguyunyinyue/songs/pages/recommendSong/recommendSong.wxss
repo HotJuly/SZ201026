@@ -1,6 +1,9 @@
+@import "/static/iconfont/iconfont.wxss";
 page{
   height:100%;
 }
+
+
 .recommendContainer .header{
   position: relative;
   width: 100%;

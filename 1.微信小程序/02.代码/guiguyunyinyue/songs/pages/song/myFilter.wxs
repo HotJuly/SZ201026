@@ -1,0 +1,18 @@
+function myFilter(value){
+  console.log('myFilter',value)
+  var min,sec;
+  value = Math.floor(value / 1000);
+  min = parseInt(value/60);
+  sec = value % 60;
+  if(sec<10){
+    sec = "0" + sec;
+  }
+  if(min<10){
+    min = "0"+ min
+  }
+  return min+":"+sec;
+}
+
+module.exports = {
+  myFilter: myFilter
+}

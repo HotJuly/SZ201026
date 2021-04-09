@@ -13,7 +13,7 @@ Page({
   // 前往推荐歌曲页面
   toRecommendSong(){
     wx.navigateTo({
-      url: '/pages/recommendSong/recommendSong',
+      url: '/songs/pages/recommendSong/recommendSong',
     })
   },
 

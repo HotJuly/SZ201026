@@ -1,5 +1,7 @@
 // pages/recommendSong/recommendSong.js
-import ajax from '../../utils/ajax.js';
+import ajax from '../../../utils/ajax.js';
+import PubSub from 'pubsub-js';
+
 Page({
 
   /**
@@ -7,7 +9,9 @@ Page({
    */
   data: {
     month:"--",
-    day:"--"
+    day:"--",
+    recommendList:[],
+    currentIndex:null
   },
 
   // 用于去往歌曲详情页面
@@ -15,9 +19,15 @@ Page({
     // console.log('toSong', event.currentTarget.dataset.song)
     // 小程序中可以通过query进行参数传递(页面通信)
     // url具有长度限制,song对象的json版本长度过长
-    let { songid } = event.currentTarget.dataset;
+    let { songid, index } = event.currentTarget.dataset;
+
+    // 记录当前进入的是哪首歌
+    this.setData({
+      currentIndex: index
+    });
+
     wx.navigateTo({
-      url: '/pages/song/song?songId=' + songid,
+      url: '/songs/pages/song/song?songId=' + songid,
     })
   },
 
@@ -70,7 +80,41 @@ Page({
 
     }
 
-    
+    // 订阅消息,监视song页面用户的切歌操作
+    PubSub.subscribe('switchType',(msg,data)=>{
+      // console.log('recommendSong', msg, data)
+      /* 
+        找到对应的歌曲
+        通过跳转之前记录的下标判断
+        下一首歌 下标+1
+        上一首歌 下标-1
+        需要做临界值判断
+          如果当前已经是第一首歌,返回最后一首歌的id
+          如果当前已经是最后一首歌,返回第一首歌的id
+      */ 
+      let { recommendList , currentIndex } = this.data;
+      let newSongId = null;
+      if (data==="pre"){
+        if(currentIndex===0){
+          currentIndex= recommendList.length-1;
+        } else {
+          currentIndex -= 1;
+        }
+      } else {
+        if (currentIndex === recommendList.length - 1) {
+          currentIndex = 0;
+        } else {
+          currentIndex += 1;
+        }
+      }
+      newSongId = recommendList[currentIndex].id;
+      this.setData({
+        currentIndex
+      })
+
+      // 将对应歌曲的id发送给song页面
+      PubSub.publish('sendId', newSongId);
+    })
   },
 
   /**
