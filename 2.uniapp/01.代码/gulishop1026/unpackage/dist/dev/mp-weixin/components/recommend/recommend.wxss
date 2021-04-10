@@ -1,0 +1,9 @@
+.recommendContainer .bannerSwiper .swiper-item {
+  width: 100%;
+  height: 100%;
+}
+.recommendContainer .bannerSwiper .swiper-item .bannerItem {
+  width: 100%;
+  height: 100%;
+}
+

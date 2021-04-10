@@ -1,0 +1,7 @@
+1.使用内置浏览器
+	内置浏览器不会报跨域问题
+2.使用vue.config.js文件
+	在项目根路径下创建vue.config.js,根据vue-cli配置参考进行配置
+3.使用manifest.json文件
+	在manifest.json->h5->devServer
+	该配置参考webpack配置
