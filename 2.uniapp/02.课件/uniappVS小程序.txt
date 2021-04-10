@@ -1,0 +1,10 @@
+uniapp						小程序
+manifest.json					project.config.json(项目配置说明书)
+pages.json					app.json+所有页面json(主要负责页面路径的注册,窗口配置,分包等)
+main.js(注册应用)+App.vue				app.js(注册小程序)+app.wxss(全局样式)
+pages文件夹					pages文件夹
+	index.vue						index.js+index.wxss+index.wxml
+
+注意:
+	禁止在unpackage文件夹中做修改,否则会出现难以预估的后果
+	如果出现HBuilderX修改代码,但是小程序中没有变化,删除unpackage,并重新编译即可
