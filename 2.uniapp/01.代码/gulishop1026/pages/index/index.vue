@@ -26,17 +26,20 @@
 				{{item.text}}
 			</view>
 		</scroll-view>
-		<Recommend/>
+		<scroll-view class="contentScroll" scroll-y="true" >
+			<Recommend :indexData="indexData"/>
+		</scroll-view>
 	</view>
 </template>
 
 <script>
+	import {mapState} from 'vuex';
 	import ajax  from "../../utils/ajax.js";
 	import Recommend from '../../components/recommend/recommend.vue';
 	export default {
 		data() {
 			return {
-				indexData:{}
+				// indexData:{}
 			}
 		},
 		// onLoad(){
@@ -65,9 +68,11 @@
 			// 	}
 			// });
 			
-			let indexData = await ajax('/getIndexData');
-			// console.log('indexData',indexData)
-			this.indexData=indexData;
+			// let indexData = await ajax('/getIndexData');
+			// // console.log('indexData',indexData)
+			// this.indexData=indexData;
+			await this.$store.dispatch('getIndexData');
+			// console.log('vuex',this.$store.state.home.indexData)
 		},
 		// mounted(){
 		// 	console.log('mounted')
@@ -77,6 +82,14 @@
 		},
 		components:{
 			Recommend
+		},
+		computed:{
+			...mapState({
+				indexData:(state)=>state.home.indexData
+			}),
+			// indexData(){
+			// 	return this.$store.state.home.indexData;
+			// }
 		}
 	}
 </script>
@@ -135,4 +148,10 @@
 					width 100%
 					height 4upx
 					background red
+		.contentScroll
+		// 小程序:height = 100vh - 头部高度 - 导航栏高度
+		// h5:height = 100vh - 头部高度 - 导航栏高度 - 头部导航栏(window) - 底部导航栏(tabBar)
+		// --window-bottom -> 在小程序端值为0,在h5端会被赋值为50px
+		// --window-top -> 在小程序端值为0,在h5端会被赋值为44px
+			height calc( 100vh - 80upx - 80upx - var(--window-top) - var(--window-bottom))
 </style>
