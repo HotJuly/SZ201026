@@ -38,8 +38,37 @@ router.get('/test',function(ctx,next){
 
 const indexData = require('./datas/index.json');
 router.get('/getIndexData',function(ctx){
-	console.log('/test success');
+	console.log('/getIndexData success');
 	ctx.body=indexData
+})
+
+
+const categoryDatas = require('./datas/categoryDatas.json');
+router.get('/getCategoryDatas',function(ctx){
+	console.log('/getCategoryDatas success');
+	ctx.body=categoryDatas;
+})
+
+const indexCateList = require('./datas/indexCateList.json');
+router.get('/getindexCateList',async function(ctx){
+	console.log('/getindexCateList success');
+	await new Promise((resolve)=>{
+		setTimeout(()=>{
+			resolve()
+		},2000)
+	});
+	ctx.body=indexCateList;
+})
+
+const goods = require('./datas/goods.json');
+router.get('/getGoodDetail',function(ctx){
+	let {goodId} = ctx.query;
+	console.log('goodId',goodId)
+	let good = goods.find((good)=>{
+		return good.id===goodId>>>0;
+	})
+	console.log('/getGoodDetail success');
+	ctx.body=good;
 })
 
 

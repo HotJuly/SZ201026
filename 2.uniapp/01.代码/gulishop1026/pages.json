@@ -6,6 +6,11 @@
 				"navigationBarTitleText": "首页"
 			}
 		},{
+			"path": "pages/personal/personal",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
+		},{
 			"path": "pages/category/category",
 			"style": {
 				"navigationBarTitleText": "分类"
@@ -16,9 +21,14 @@
 				"navigationBarTitleText": "购物车"
 			}
 		},{
-			"path": "pages/personal/personal",
+			"path": "pages/login/login",
 			"style": {
-				"navigationBarTitleText": "个人中心"
+				"navigationBarTitleText": "登录"
+			}
+		},{
+			"path": "pages/detail/detail",
+			"style": {
+				"navigationBarTitleText": "商品详情"
 			}
 		}
 	],

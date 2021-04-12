@@ -17,17 +17,24 @@
 		<scroll-view class="navScroll"
 		 scroll-x 
 		v-if="indexData.kingKongModule">
-			<view class="navItem active">
+			<view class="navItem"
+			 :class="currentIndex===-1?'active':''"
+			 @click="handleClick(-1)"
+			 >
 				推荐
 			</view>
 			<view class="navItem"
-			v-for="item in indexData.kingKongModule.kingKongList"
-			:key="item.L1Id">
+			v-for="(item,index) in indexData.kingKongModule.kingKongList"
+			:key="item.L1Id" 
+			:class="currentIndex===index?'active':''"
+			 @click="handleClick(index)"
+			>
 				{{item.text}}
 			</view>
 		</scroll-view>
 		<scroll-view class="contentScroll" scroll-y="true" >
-			<Recommend :indexData="indexData"/>
+			<Recommend v-if="currentIndex===-1" :indexData="indexData"/>
+			<CateList :navIndex="currentIndex" v-else />
 		</scroll-view>
 	</view>
 </template>
@@ -36,10 +43,12 @@
 	import {mapState} from 'vuex';
 	import ajax  from "../../utils/ajax.js";
 	import Recommend from '../../components/recommend/recommend.vue';
+	import CateList from '../../components/cateList/cateList.vue';
 	export default {
 		data() {
 			return {
-				// indexData:{}
+				// indexData:{},
+				currentIndex:-1
 			}
 		},
 		// onLoad(){
@@ -78,10 +87,13 @@
 		// 	console.log('mounted')
 		// },
 		methods:{
-
+			handleClick(value){
+				this.currentIndex=value;
+			}
 		},
 		components:{
-			Recommend
+			Recommend,
+			CateList
 		},
 		computed:{
 			...mapState({
