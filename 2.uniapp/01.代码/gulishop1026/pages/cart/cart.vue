@@ -19,8 +19,11 @@
 		<block v-else>
 			<!-- 登陆之后的购物车 -->
 			<view class="cartList">
-				<view class="cartItem" v-for="shopItem in cartList" :key="shopItem.id">
-					<text class='iconfont icon-xuanzhong selected'></text>
+				<view class="cartItem" v-for="(shopItem,index) in cartList" :key="shopItem.id">
+					<text class='iconfont icon-xuanzhong'
+					 :class="shopItem.select?'selected':''"
+					 @click="handleSelect(index)"
+					 ></text>
 					<view class="shopItem">
 						<image class="shopImg" :src="shopItem.listPicUrl" mode=""></image>
 						<view class="shopInfo">
@@ -30,16 +33,19 @@
 					</view>
 					<!-- 控制数量 -->
 					<view class="countCtrl">
-						<text class="add"> + </text>
+						<text class="add" @click="handleChange(true,index)"> + </text>
 						<text class="count"> {{shopItem.count}} </text>
-						<text class="del"> - </text>
+						<text class="del" @click="handleChange(false,index)"> - </text>
 					</view>
 				</view>
 				
 			</view>
 			<!-- 底部下单 -->
 			<view class="cartFooter">
-				<text class='iconfont icon-xuanzhong selected'></text>
+				<text
+				 class='iconfont icon-xuanzhong'
+				 :class="isAllSelected?'selected':''"
+				 @click="handleAllSelect(!isAllSelected)"></text>
 				<text class="allSelected">已选 3</text>
 				<view class="right">
 					<text class="totalPrice">合计: ￥1000</text>
@@ -51,7 +57,7 @@
 </template>
 
 <script>
-	import {mapState} from 'vuex';
+	import { mapState , mapMutations , mapGetters } from 'vuex';
 	export default {
 		data() {
 			return {
@@ -61,7 +67,23 @@
 		computed:{
 			...mapState({
 				cartList:(state)=>state.cart.cartList
-			})
+			}),
+			...mapGetters(["isAllSelected"])
+		},
+		methods:{
+			...mapMutations(["changeCount","changeSelect","changeAllSelect"]),
+			handleChange(flag,index){
+				// console.log('handleChange',flag,index)
+				this.changeCount({flag,index})
+			},
+			handleSelect(index){
+				// console.log('handleSelect',index)
+				this.changeSelect(index)
+			},
+			handleAllSelect(select){
+				// console.log('handleSelect',index)
+				this.changeAllSelect(select)
+			}
 		}
 	}
 </script>

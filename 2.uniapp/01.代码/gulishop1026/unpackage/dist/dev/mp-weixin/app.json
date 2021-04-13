@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/cart/cart",
     "pages/index/index",
     "pages/personal/personal",
     "pages/category/category",
-    "pages/cart/cart",
     "pages/login/login",
     "pages/detail/detail"
   ],
@@ -44,5 +44,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap4.json"
 }

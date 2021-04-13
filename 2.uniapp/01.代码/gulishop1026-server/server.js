@@ -1,5 +1,9 @@
 const Koa = require('koa');
 const KoaRouter = require('koa-router');
+const Fly=require("flyio/src/node");
+const jwt=require("jsonwebtoken");
+
+const fly=new Fly;
 
 /*
  1.创建服务器应用实例
@@ -69,6 +73,33 @@ router.get('/getGoodDetail',function(ctx){
 	})
 	console.log('/getGoodDetail success');
 	ctx.body=good;
+})
+
+// 用于请求用户唯一标识OpenId
+router.get('/getOpenId',async function(ctx){
+	console.log('/getOpenId success');
+	let {code} = ctx.query;
+	let appid = "wxe5931a68ea66cece";
+	let appsecret = "1288bbcdcba8c2d397c488982d38df2b";
+	let url = `https://api.weixin.qq.com/sns/jscode2session?appid=${appid}&secret=${appsecret}&js_code=${code}&grant_type=authorization_code`;
+	let result = await fly.get(url);
+	// console.log('result',result)
+	let {openid} = JSON.parse(result.data);
+	// console.log('openid',openid)
+	
+	// 加密openid
+	// jwt.sign(需要加密的数据,盐)
+	let salt = 'atguigu';
+	let token = jwt.sign(openid,salt);
+	// console.log('token',token);
+	
+	// 解密token
+	// jwt.verify(token,盐)
+	let newOpenId = jwt.verify(token,salt);
+	console.log(openid,newOpenId);
+	
+	ctx.body=token;
+	// ctx.body=categoryDatas;
 })
 
 

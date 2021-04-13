@@ -1,6 +1,7 @@
 import Vue from 'vue';
 const state = {
 	cartList: [{
+			"select":true,
 			"count": 1,
 			"promId": 0,
 			"showPoints": false,
@@ -75,6 +76,7 @@ const state = {
 			"itemSizeTableFlag": false
 		},
 		{
+			"select":false,
 			"count":2,
 			"promId": 0,
 			"showPoints": false,
@@ -177,10 +179,61 @@ const mutations = {
 	   }
 	   
 	   console.log('cartList',state.cartList)
+	},
+	changeCount(state,{flag,index}){
+		/*
+			需求:当用户点击商品的+/-号时候,修改对应商品的数量
+			如果是+,就count+1,
+			如果是-,就count-1
+				如果当前数量为1,在触发删减,删除商品
+		*/
+	   let shopItem = state.cartList[index];
+	   if(flag){
+		   shopItem.count+=1;
+	   }else{
+		   if(shopItem.count===1){
+			   state.cartList.splice(index,1);
+		   }else{
+			shopItem.count-=1;
+		   }
+	   }
+	   
+	},
+	changeSelect(state,index){
+		/*
+			需求:当用户点击商品的选中按钮,切换对应商品的选中状态
+		*/ 
+	   let shopItem = state.cartList[index];
+	   shopItem.select=!shopItem.select;
+	},
+	changeAllSelect(state,select){
+		/*
+			需求:当用户点击全选按钮,切换所有商品的选中状态,变成与当前全选按钮相反一样
+		*/ 
+	   state.cartList.forEach((shopItem)=>{
+		   shopItem.select=select;
+		   // return 123;
+	   })
+	   // console.log('result',result)
 	}
 };
 const actions = {};
-const getters = {};
+const getters = {
+	isAllSelected(){
+		/*
+			需求:
+				1.当购物车中所有的商品都是选中状态,当前全选按钮也变为选中状态
+				2.当购物车中有一个以上的商品处于未选中状态,当前全选按钮也变为未选中状态
+				3.当购物车中没有商品,当前全选按钮变为未选中状态
+				4.返回值类型:布尔值
+		*/
+	   if(!state.cartList.length)return false;
+	   let result = state.cartList.every((shopItem)=>{
+		   return shopItem.select
+	   })
+		return result;
+	}
+};
 export default {
 	state,
 	mutations,

@@ -6,12 +6,12 @@
   bindgetuserinfo="getUserInfo"
   >获取用户信息</button> -->
   
-  <!-- <button class="huahua"
+  <button class="huahua"
   wx:else
   bindtap="getUserProfile"
-  >获取用户信息</button> -->
+  >获取用户信息</button>
 
-  <open-data class="huahua" type="userAvatarUrl"></open-data>
+  <!-- <open-data class="huahua" type="userAvatarUrl"></open-data> -->
 
   <text bindtap="handleClick">你好,{{userInfo.nickName}}</text>
   <view bindtap="handleParent">
