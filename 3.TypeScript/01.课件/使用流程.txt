@@ -1,0 +1,15 @@
+流程一:
+安装TypeScript
+
+流程二:
+编译TS文件
+
+1.使用typescript自带命令编译
+	tsc 文件路径
+
+2.使用vscode编译
+	1.初始化	->	tsc --init	->得到tsconfig.json文件
+	2.修改配置	->	1.关闭严格模式	2.打开设置输出路径outDir
+	3.vscode	->	终端	->	运行任务	->	选中typescript->	ts监视
+
+3.配置脚手架
