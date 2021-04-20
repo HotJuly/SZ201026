@@ -6,7 +6,8 @@ Page({
   data: {
     msg:"花花",
     // 用户基本信息
-    userInfo:{}
+    userInfo:{},
+    flag:false
   },
   // 面试题:如何实现对象深拷贝
   //  JSON.parse(JSON.stringify(obj))乞丐版

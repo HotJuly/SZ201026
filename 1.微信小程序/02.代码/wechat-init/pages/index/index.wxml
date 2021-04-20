@@ -26,4 +26,20 @@
   <!-- <view capture-bind:tap="handleParent">
     <button capture-bind:tap="handleChildren">欢迎来到尚硅谷</button>
   </view> -->
+  <view wx:if="{{flag}}">
+    <view wx:if="{{msg}}">
+    1
+    </view>
+    <view wx:else>
+    2
+    </view>
+  </view>
+  <view wx:else>
+    <view wx:if="{{msg}}">
+    4
+    </view>
+    <view wx:else>
+    3
+    </view>
+  </view>
 </view>
