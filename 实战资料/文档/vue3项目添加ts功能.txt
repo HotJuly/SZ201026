@@ -1,0 +1,13 @@
+1.下载依赖
+	1)@vue/cli-plugin-typescript
+	2)typescript
+2.初始化ts配置文件
+	1)tsc --init
+	2)在tsconfig.json中新增配置
+		"noImplicitAny": false
+3.添加typescript规则
+	vue add typescript
+4.修改入口文件类型(直接修改文件后缀)
+	src/main.js -> src/main.ts
+5.声明使用ts
+	vue文件中,<script>改为<script lang="ts">
