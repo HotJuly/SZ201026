@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function person(name){
+            this.name=name;
+        }
+        person.prototype.b = "hello";
+        person.prototype.c = 2;
+        var p1 = new person('xiaoming');
+        // console.log('p1',p1.toString())
+        /*
+            查找顺序
+                1.首先自身查找
+                2.p1.__proto__.toString()   =>  person.prototype.toString()
+                2.p1.__proto__.__proto__.toString() => person.prototype.__proto__.toString()=>Object.prototype.toString();
+
+            查找顺序:如果自身没有,会顺着隐式原型链向上找
+            设置顺序:如果自身没有,就给自身添加(跟原型链无关)
+        */
+        // p1.b="world";
+        // console.log(p1,p1.__proto__)
+
+        // p1.c +=1;
+        p1.c = p1.c + 1;
+        // p1.c = (p1.c + 1);
+        // p1.c = (p1.__proto__.c + 1);
+        // console.log(p1.c)
+        console.log(p1,p1.__proto__);
+        console.log(p1 instanceof Object)
+        // 判断一个函数是不是一个实例对象的父类,就看父类的原型对象是够有出现在实例对象的隐式原型链上
+    </script>
+</body>
+</html>

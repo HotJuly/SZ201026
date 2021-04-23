@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+        使用构造函数和ES6的类设计并测试以下需要
+        需求1: 
+            现在2个人, 都有姓名与年龄(值自己指定), 都能自我介绍自己的姓名和年龄, 能得到当前的总人数
+        需求2: 
+            现在又有了一个学生, 它有身价的属性, 能介绍它的所有信息
+            又有一个老师, 它有教授课程的属性, 能介绍它的所有信息
+
+
+        组合继承:
+            1.将父类的实例对象作为子类的原型对象(为了能使用到父类上所有的方法);
+            2.借调父类的函数,用于加工子类的实例(为了得到父类实例所有的属性)
+        */
+       function Person(name,age){
+        this.name=name;
+        this.age=age;
+        Person.prototype.count+=1;
+        // this.sayHello=function(){
+        //     console.log(`大家好,我是${this.name},我今年${this.age}`)
+        // }
+       }
+
+       Person.prototype.sayHello=function(){
+            console.log(`大家好,我是${this.name},我今年${this.age}`)
+        }
+
+        Person.prototype.count = 0;
+
+       var p1 = new Person("xiaoming",18);
+       var p2 = new Person("xiaowang",19);
+       p1.sayHello();
+       p2.sayHello();
+       console.log(p1.sayHello===p2.sayHello,p1.count);
+
+       function Student(name,age,price){
+        // this.name = name;
+        // this.age = age;
+        Person.call(this,name,age);
+        // console.log(this)
+        this.price = price;
+       }
+
+
+       Student.prototype = new Person;
+       Student.prototype.constructor = Student;
+
+       Student.prototype.sayHello=function(){
+            console.log(`大家好,我是${this.name},我今年${this.age},我有${this.price}钱`)
+       }
+
+       var s1 = new Student("laowang",38,1000000000);
+       
+       s1.sayHello();
+    </script>
+</body>
+</html>

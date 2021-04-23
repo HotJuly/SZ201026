@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+            1.万物皆对象(基本数据类型除外)
+            2.所有的对象都是Object的实例对象,函数也是(函数在js中是一等公民,从身上具有prototype,__proto__就可以看出他是一个对象)
+            3.所有的函数都是Function的实例对象(包括自己????)
+            注意:
+                1.js中使用C语言创建的三个东西:
+                    1.Object函数
+                    2.Funtcion函数
+                    3.Function的原型对象
+            理解:原型链图中有四条线是作者指定的
+                1.第一条线Function.__proto__ === Function.prototype
+                    因为所有的函数公共的方法(例如:call,bind等),都在Function.prototype上
+                    如果Function.__proto__ !== Function.prototype,Function函数自身无法使用函数的公共方法
+                2.第二条线Object.__proto__ === Function.prototype
+                    理由同1
+                3.第三条线Object.prototype.__proto__ === null;
+                    为了防止出现原型链死循环,特地指定
+                4.第四条线Function.prototype.__proto__ === Object.prototype
+                    如果没有这条线,所有的Function都无法使用到Object的方法
+                    但是必须要符合函数及对象的特点
+            
+            箭头函数相关:
+                1.箭头函数不能构造调用(因为他没有自己的this,所以无法生成实例对象)
+                2.箭头函数没有自己的this,使用的是外层作用域的this
+                3.箭头函数没有原型对象
+
+                问题:箭头函数使用bind可不可以执行this
+                回答:不能,理由同2
+        */  
+    //    var a = ()=>{console.log(this)};
+    //    var b = {name:"123"};
+    //    a.bind(b)();
+    //    console.log(Object,Function,Function.prototype)
+
+        function Foo() {console.log(123)}
+        const f1 = new Foo()
+        const f2 = new Foo()
+
+        const o1 = new Object()
+        const o2 = {}
+
+        Foo instanceof Object   //true
+        Foo instanceof Function     //true
+        Object instanceof Object    //true
+        Function instanceof Function    //true
+        Function instanceof Object  //true
+
+        Object instanceof Foo   //false
+        f1 instanceof Function  //false
+        f1 instanceof Object    //true
+    </script>
+</body>
+
+</html>

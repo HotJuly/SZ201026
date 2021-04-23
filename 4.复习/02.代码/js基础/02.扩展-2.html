@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 给你一个变量,请告知他的父类是谁
+        var obj = [1,2,3];
+        var obj1 = new Date();
+        // console.log(obj instanceof Array)
+        // 借助Object的toString
+        console.log(Object.prototype.toString.call(obj1).split(" ")[1].replace(']',""));
+    </script>
+</body>
+</html>
