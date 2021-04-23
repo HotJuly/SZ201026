@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function A(a,b,c,d){
+      console.log(this,a,b,c,d)
+    }
+    // window.A();
+
+    // new A();
+
+    var obj = {
+      a:A
+    }
+    // obj.A();
+
+    // A.call(obj);
+
+    // var foo={
+    //   bar:function(){
+    //     return this.baz
+    //   },
+    //   baz:1
+    // };
+    // // foo.bar();
+    // // 数组也是对象
+    // (function(){ 
+    //   console.log(arguments[0]())
+    //   // console.log(arguments.0())
+    // })(foo.bar);
+
+
+    // 手写使用call
+    /* 区别call和apply
+      相同点:
+        1.都可以指定本次函数执行的内部this
+        2.第一个参数都是用来指定当前本次执行的this,如果不传或者为undefined或者null,都是window
+      不同点:call传入参数以逗号隔开,apply传入数组即可
+    */
+    // obj.fn.call(null,1,2,3,4);
+    // obj.fn.apply(null,[1,2,3,4]);
+
+    // Function.prototype.call1=function(thatThis,...args){
+    //   // console.log(this,thatThis)
+    //   thatThis._fn=this;
+    //   eval("thatThis._fn("+args.toString()+")");
+    //   delete thatThis._fn;
+    // }
+    // A.call1(obj,1,2,3,5);
+
+    //手写bind
+    /*
+      bind注意点
+        1.根据旧的函数,生成全新的函数,并制定新函数中的this
+        2.所需参数可以分批传入
+    */
+    // var newA = A.bind(obj,4,3,2,1);
+    // var newA = A.bind(obj,4,3)(2,1);
+    // A(5,5,6,6);
+
+    // 乞丐版
+    // Function.prototype.bind1=function(thatThis,...args){
+    //   var that = this;
+    //   return function(){
+    //     that.apply(thatThis,args);
+    //   }
+    // }
+
+    Function.prototype.bind1=function(thatThis,...args){
+      var that = this;
+      return function(...args2){
+        let newArgs = [...args,...args2];
+        that.apply(thatThis,newArgs);
+      }
+    }
+    var newA = A.bind1(obj,1,2);
+    newA(3,4);
+  </script>
+</body>
+</html>

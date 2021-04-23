@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+      闭包分类:无效闭包和有效闭包
+      1.什么时候产生闭包:
+          内部函数执行函数定义的时候,产生闭包
+      2.如何产生闭包:
+          内部函数引用外部函数的变量,外部函数被调用
+      3.闭包的好处:
+          延长局部变量的生命周期
+      4.闭包的坏处:
+          保存任何内容都需要付出内存的代价,为了缓存数据,会导致额外的内存消耗(内存泄漏)
+          内存泄漏过多,导致内存溢出
+      5.解决副作用:
+          及时释放闭包,将无用闭包及时释放
+          让垃圾回收机制回收闭包
+      6.什么是闭包:
+          本该随着外层执行结束销毁的变量对象,被内部函数引用,导致意外存活
+    
+      执行上下文:
+          1.运行代码需要用到的内存空间
+          2.变量对象(用于收集当前作用域中所有的变量)
+          创建时间:
+            执行函数的时候
+          销毁时间:
+            函数执行结束
+    */
+   var c=3;
+    function fn1(){
+      var a = 1;
+      function fn2(){
+        var b=6;
+        a++;
+        console.log('a',a)
+        function fn5(){
+          console.log(a,b,c)
+        }
+        return fn5;
+      }
+      function fn3(){
+        a+=2;
+        console.log('a',a)
+      }
+      // return 123;
+      // return {
+      //   fn2,
+      //   fn3
+      // };
+      let fn5 = fn2();
+      return fn5
+    }
+    // var {fn2,fn3} = fn1();
+    var fn5 = fn1();
+    
+    // fn2() //  2
+    // fn2() //  3
+    // fn3() //  3
+    // fn3() //  5
+
+    // fn2() //  2
+    // fn2() //  3
+    // fn3() //  5
+    // fn3() //  7
+    // fn2=null;
+    // fn3=null;
+  </script>
+</body>
+</html>

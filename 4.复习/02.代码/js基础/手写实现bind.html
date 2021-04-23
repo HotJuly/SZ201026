@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function A(a,b,c,d){
+            console.log('A',a+b+c+d);
+        }
+        // console.log(A.length)
+
+        Function.prototype.bind = function(thatThis,...args){
+            let that = this;
+            function _A(...args2){
+                if(args2.length){
+                    args = [...args,...args2];
+                }
+                if(args.length<that.length){
+                    return _A;
+                }
+                that.apply(thatThis,args)
+            }
+            return _A
+        }
+        // console.log(A.bind(123,3,4))
+        A.bind(123)(3)(4)(5)(6);
+    </script>
+</body>
+</html>

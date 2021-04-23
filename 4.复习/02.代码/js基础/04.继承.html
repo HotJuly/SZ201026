@@ -57,10 +57,75 @@
        Student.prototype.sayHello=function(){
             console.log(`大家好,我是${this.name},我今年${this.age},我有${this.price}钱`)
        }
+       
+        var s1 = new Student("laowang",38,1000000000);
+    //    s1.__proto__.sayHello=function(){
+    //         console.log(`大家好,我是${this.name},我今年${this.age},我有${this.price}钱`)
+    //    }
 
-       var s1 = new Student("laowang",38,1000000000);
        
        s1.sayHello();
+
+
+
+    /* ----------------class继承------------------
+    注意:
+        1.如果是方法会自动放在原型对象上
+        2.如果是属性就自动放在实例对象上
+        3.如果前缀是static关键字,该属性会被放在构造函数身上(静态方法)
+    方法和属性了解:
+        1.方法也是属性
+        2.方法是特殊的属性,特殊在属性值是函数类型
+        
+
+    super()->Person.call(this,name,age);
+    extends关键字->
+            Student.prototype = new Person;
+            Student.prototype.constructor = Student;
+    */
+    // class Person{
+    //     constructor(name,age){
+    //         this.name=name;
+    //         this.age=age;
+    //     }
+
+    //     static count = 123;
+
+    //     sayHello(){
+    //         console.log(`大家好,我是${this.name},我今年${this.age}`)
+    //     }
+    // }
+
+    // class Student extends Person{
+    //     constructor(name,age,price){
+    //         // 必须要有super
+    //         // Person.call(this,name,age)
+    //         // super即是函数也是对象
+    //         // super如果是在constructor或者原型方法中代表的是父类的原型对象
+    //         //super如果是在静态方法中代表的是父类本身
+    //         super(name,age);
+    //         this.price=price;
+    //         console.log(111,super.sayHello)
+    //     }
+
+    //     sayHello(){
+    //         console.log(`大家好,我是${this.name},我今年${this.age},我有${this.price}钱`)
+    //         console.log(222,super.sayHello)
+    //     }
+
+    //     static a(){
+    //         console.log(333,super.count)
+    //     }
+    // }
+
+    // var p1 = new Person("xiaoming",18);
+    // var s1 = new Student("xiaoming",18,666);
+    // // console.dir(p1)
+    // // console.dir(Person)
+    // // console.dir(Person.prototype)
+    // s1.sayHello();
+
+    // s1.__proto__.constructor.a();
     </script>
 </body>
 </html>
