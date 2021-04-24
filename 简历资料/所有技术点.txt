@@ -61,6 +61,9 @@ svn，git版本控制工具
 熟悉git版本控制工具并了解svn
 模块化: commonjs, ES6
 
+vue3
+ts
+
 
 
 
