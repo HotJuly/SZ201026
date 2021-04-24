@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        手写实现对象的map方法(类似数组的map)
+            分析数组的map:
+                1.接受一个回调函数(回调函数接受两个实参,分别是value,第二项是key)
+                2.map会返回一个全新的数组(根据回调函数的return结果确定)
+        */
+    //    let arr=[1,2,3];
+    //    let newArr= arr.map((item,index)=>{
+    //         return item+10
+    //    })
+    //    console.log(newArr)
+        let obj = {
+            name:"xiaoming",
+            age:18,
+            sex:"未知"
+        }
+
+        // Object.prototype.myMap = function(cb){
+        //     let newObj = {};
+        //     // 获取当前所有的key,this是调用的对象
+        //     let keys = Object.keys(this);
+        //     // 遍历获取到所有的key
+        //     keys.forEach((item,index)=>{
+        //         // 将key值和所对应的value值传递给cb回调函数，获取他的返回值
+        //         let result = cb(this[item],item);
+        //         // 给新对象添加属性
+        //         newObj[item] = result;
+        //     })
+        //     // console.log(keys)
+        //     return newObj;
+        // }
+
+        // Object.prototype.myMap = function(cb){
+        //     let newObj = {};
+        //     for(key in this){
+        //         if(this.hasOwnProperty(key)){
+        //             let result = cb(this[key],key);
+        //             // 给新对象添加属性
+        //             newObj[key] = result;
+        //         }
+        //     }
+        //     // console.log(keys)
+        //     return newObj;
+        // }
+
+        
+        Object.prototype.myMap = function(cb){
+            let newObj = JSON.parse(JSON.stringify(this),function(key,value){
+                if(key){
+                    return cb(value,key);
+                }else{
+                    return value;
+                }
+            })
+            return newObj;
+        }
+
+
+       let newObj= obj.myMap((value,key)=>{
+            return value+"11"
+       })
+       console.log(newObj)
+    </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            Promise是一个构造函数,返回一个promise实例对象
+            他只接受一个参数(数据类型是函数),该函数内部接受两个参数(resolve和reject)
+            通过调用resolve方法,可以让promise对象变成成功状态
+            通过调用reject方法,可以让promise对象变成失败状态
+
+            .then相关
+                接受两个参数,必传一个
+                当前面的promise状态变成成功状态,会触发第一个回调函数,并将结果传递给回调函数
+                当前面的promise状态变成失败状态,会触发第二个回调函数,并将结果传递给回调函数
+                返回值:无论回调函数中返回任何数据,.then返回的一定都是一个新的promise对象(pending)
+                    返回的promise的状态:
+                        pending->resolved
+                            1.返回值类型不是promise对象
+                            2.返回一个成功的promise对象
+                        pending->rejected
+                            1.返回一个失败的promise对象
+                            2.内部代码出现报错
+                注意:
+                    .then他不是监视promise的变化过程,而是只要结果不是pending都会触发
+
+        */
+        // var promise = new Promise((resolve,reject)=>{
+        //     // console.log(123);
+        //     setTimeout(resolve,2000,6);
+        // })
+        // console.log(promise)
+        // setTimeout(()=>{
+        //     var thenPromise = promise.then((data)=>{
+        //         // console.log('data',data)
+        //         // return undefined;
+        //         // return Promise.resolve();
+        //         // return Promise.reject();
+        //         // throw new Error('xixi')
+        //     });
+        //     console.log('thenPromise',thenPromise===promise)
+        // },3000)
+
+        // var promise = new Promise((resolve,reject)=>{
+        //     reject(1);
+        // })
+        // promise.then((data)=>{
+        //     console.log('data',data)
+        // },(error)=>{
+        //     console.log('error',error)
+        // }).then((data1)=>{
+        //     console.log('data1',data1)
+        // },(error1)=>{
+        //     console.log('error1',error1)
+        // }).catch((error2)=>{
+        //     console.log('error2',error2)
+        // });
+
+
+
+        /*
+            async和await
+                async函数的返回值:promise对象
+                返回的promise状态变化:
+                    pending->resolved
+                        内部所有代码执行结束
+                    pending->rejectd
+                        内部代码出现报错
+                await之后的代码都相当于放在then的成功回调内部
+                await之后可以跟任何数据类型
+                    如果数据不是promise对象,想当于同步代码,await失效
+                    如果数据是promise对象,该promise只要是非pending就会执行后续代码
+        */
+        async function A(){
+            // let a = await 1;
+            // console.log(a)
+            return 100;
+        }
+        console.log(A())
+        console.log(1)
+    </script>
+</body>
+</html>
