@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ a }}</h1>
+    <h1>{{ a | myFilter }}</h1>
   </div>
 </template>
 
@@ -8,39 +8,49 @@
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String
+    msg: String,
+    b:Function
   },
+  // props:['msg'],
   data(){
     return {
       a:1
     }
   },
+  filters:{
+    myFilter(value){
+      return value===1?"一":value;
+    }
+  },
   mounted(){
+    console.log('mounted',this)
+    this.b(this.a)
     // console.log('hello',this.$options._a)
     // console.log(a)
-    this.a=2;
-    console.log('a',this.a);
-    debugger
 
-    // ????是不是存在一个看不见的nextTick
+    // this.a=2;
+    // console.log('a',this.a);
+    // debugger
 
-    Promise.resolve().then(()=>{
-      console.log('promise1')
-    })
+    // // ????是不是存在一个看不见的nextTick
 
-    this.$nextTick(()=>{
-      console.log('$nextTick1')
-    })
+    // Promise.resolve().then(()=>{
+    //   console.log('promise1')
+    // })
 
-    Promise.resolve().then(()=>{
-      console.log('promise2')
-    })
+    // this.$nextTick(()=>{
+    //   console.log('$nextTick1')
+    // })
+
+    // Promise.resolve().then(()=>{
+    //   console.log('promise2')
+    // })
     
-    this.$nextTick(()=>{
-      console.log('$nextTick2')
-    });
+    // this.$nextTick(()=>{
+    //   console.log('$nextTick2')
+    // });
     
-    console.log('a+1',this.a+1);
+    // console.log('a+1',this.a+1);
   },
   _a:2
 }

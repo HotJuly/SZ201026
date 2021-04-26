@@ -1,17 +1,23 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="a2">
+    <img alt="Vue logo" @click="handleClick" src="./assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App" :b="handleClick"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import HelloWorld from './components/HelloWorld';
 export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  methods:{
+    handleClick(data){
+    //   console.log(this.$helloInstance)
+    //   document.querySelector('#app').appendChild(this.$helloInstance.$el)
+    console.log(this,data)
+    }
   },
   _a:1
 }

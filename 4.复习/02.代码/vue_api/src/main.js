@@ -24,6 +24,34 @@ Vue.config.productionTip = false
 //   return child + 1;
 // }
 
+//API组件体验
+// import HelloWorld from './components/HelloWorld.vue';
+// // 生成组件构造函数
+// let HelloComponent = Vue.extend(HelloWorld);
+let HelloComponent = Vue.extend({
+  template:"<div>{{a}}</div>",
+  data(){
+    return {
+      a:3
+    }
+  }
+});
+//生成组件实例对象
+let helloInstance = new HelloComponent();
+//生成真实DOM
+helloInstance=helloInstance.$mount();
+// 让所有组件都能看到hello组件
+Vue.prototype.$helloInstance = helloInstance;
+document.body.appendChild(helloInstance.$el);
+console.log(helloInstance)
+
+// 用于统一处理生命周期中所需要做的事情
+// Vue.mixin({
+//   mounted(){
+//     console.log(this.$options.name)
+//   }
+// })
+
 new Vue({
   render: h => h(App),
 }).$mount('#app')
