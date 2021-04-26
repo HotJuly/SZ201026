@@ -8,3 +8,50 @@
 		2.子组件声明props用于接收
 		3.子组件调用该函数,并传入参数
 		4.父组件的该函数会根据接收的实参,修改父组件的数据
+
+2.provide/inject(可以看作加强版props)
+	用于爷孙组件传参
+	祖先组件将需要暴露的数据写在provide属性中,后代组件使用inject属性声明需要使用的属性名即可
+
+3.自定义事件
+	v-model="msg"
+		1.用在input标签上
+			1)将msg中的数据作为input标签的初始值
+				:value="msg"
+			2)当input框中的数据发生变化的时候,修改data中对应的数据
+				事件名:input
+		2.用在组件标签上
+			1)将msg中的数据通过标签属性value传递给子组件
+			2)当input框中的数据发生变化的时候,让父组件自己修改data中对应的数据
+				自定义事件名称:input
+	$on,$emit,$once,$off
+	.sync修饰符(:val.sync="msg")
+		1)将msg中的数据通过标签属性val传递给子组件
+		2)当input框中的数据发生变化的时候,让父组件自己修改data中对应的数据
+			自定义事件名称:update:val
+	事件总线
+		Vue.prototype.$bus = new Vue();
+		A组件	this.$bus.$on('事件名称',callback)
+		B组件	this.$bus.$emit('事件名称',数据本身)
+		vm.$bus->vm.__proto__.$bus(访问VueComponent的原型对象)->vm.__proto__.__proto__.$bus(访问Vue的原型对象)
+
+4.$parent,$children,$root,$refs
+	$parent用于获取父组件实例对象
+	$children用于获取子组件实例组成的数组
+	$root用于获取根组件实例对象
+	$refs
+		1.用在标签上
+			用于获取某个子标签的真实DOM对象
+		2.用在组件上
+			用于获取某个子组件的组件实例对象
+
+5.$attrs,$listeners
+	$attrs用于收集子组件没有使用props接收的标签属性
+		<A {...$attrs}/>
+	$listeners用于收集子组件绑定的所有自定义事件
+
+6.插槽
+	通过v-slot指令+slot组件
+		默认插槽,具名插槽,作用域插槽
+
+7.Vuex

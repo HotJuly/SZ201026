@@ -1,75 +1,57 @@
 <template>
-  <div class="hello">
-    <h1>{{ a | myFilter }}</h1>
+  <div class="hello" v-show="a">
+    hello
+    <input type="text" :value="msg" @input="handleInput">
+    <!-- <input type="text" :value="msg" @input="handleInput"> -->
+    <!-- <A {...$attrs}/> -->
+    <slot name="default"></slot>
+    <slot name="header"></slot>
+    <slot name="footer" text="Footer1"></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String,
-    b:Function
-  },
-  // props:['msg'],
   data(){
     return {
-      a:1
+      a:1,
+      form:{
+        name:"xiaoming",
+        age:28
+      }
     }
   },
-  filters:{
-    myFilter(value){
-      return value===1?"一":value;
-    }
+  // props:["msg","value","class"],
+  props:["msg","value"],
+  model:{
+    prop:"msg",
+    event:"input123123123"
   },
   mounted(){
-    console.log('mounted',this)
-    this.b(this.a)
-    // console.log('hello',this.$options._a)
-    // console.log(a)
-
-    // this.a=2;
-    // console.log('a',this.a);
-    // debugger
-
-    // // ????是不是存在一个看不见的nextTick
-
-    // Promise.resolve().then(()=>{
-    //   console.log('promise1')
-    // })
-
-    // this.$nextTick(()=>{
-    //   console.log('$nextTick1')
-    // })
-
-    // Promise.resolve().then(()=>{
-    //   console.log('promise2')
-    // })
-    
-    // this.$nextTick(()=>{
-    //   console.log('$nextTick2')
-    // });
-    
-    // console.log('a+1',this.a+1);
+    // this.$destroy();
+    // this.form={};
+    // this.form.name="xiaoming";
+    // this.$forceUpdate();
+    // console.log("props",this.$props)
+    // console.log("parent",this.$parent)
+    // console.log('attrs',this.$attrs)
+    // console.log('listeners',this.$listeners)
   },
-  _a:2
+  watch:{
+    msg(){
+      console.log('msg change')
+    }
+  },
+  methods:{
+    handleInput(event){
+      // console.log('handleInput')
+      // this.$emit('input123123123',event.target.value)
+      this.$emit('update:msg',event.target.value)
+    }
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
 </style>
