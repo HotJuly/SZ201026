@@ -15,7 +15,7 @@
 -->
 
     <div id="app">
-      <p v-on:click="handleClick">{{msg.a}}</p>
+      <p class="p1" v-on:click="handleClick">{{msg}}</p>
     </div>
     <script src="./js/observer.js"></script>
     <script src="./js/watcher.js"></script>
@@ -43,17 +43,16 @@
       const vm = new MVVM({
         el: "#app",
         data: {
-          msg: {
-            a:"hello MVVM"
-          },
+          msg: "hello MVVM",
         },
         methods:{
-          handleClick(){
+          handleClick:function(){
             console.log('handleClick')
           }
         }
       });
-      vm.msg.a="666"
+
+      vm.msg="hello guigu!!!"
 
       console.log(vm.msg);
 

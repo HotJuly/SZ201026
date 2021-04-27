@@ -6,7 +6,8 @@
   </head>
   <body>
     <div id="app">
-      <p id="a222" value="haha">{{ person.name }}</p>
+      <p id="a222" value="haha" v-on:click="handle">{{ person.name }}</p>
+      <span v-text="msg"></span>
     </div>
     <script src="./js/observer.js"></script>
     <script src="./js/watcher.js"></script>
@@ -28,7 +29,7 @@
           3. 将模板解析后的文档碎片节点添加到el容器中生效
       */
 
-      new MVVM({
+      var vm=new MVVM({
         // el: "#app",
         el: document.getElementById("app"),
         data: {
@@ -37,7 +38,13 @@
             name: "jack",
           },
         },
+        methods:{
+          handle(){
+            console.log('handle')
+          }
+        }
       });
+      vm.msg="hello world"
     </script>
   </body>
 </html>
