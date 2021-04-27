@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <router-view></router-view>
-    <button @click="toAbout">toAbout</button>
+    <ul>
+      <li v-for="(item,index) in list" :key="index">
+        <label>{{item}}:</label><input type="text" :value="item">
+      </li>
+    </ul>
+    <button @click="add">添加一项</button>
   </div>
 </template>
 
@@ -17,9 +21,6 @@ export default {
     add(){
       let len = this.list.length+1;
       this.list.splice(2,0,len);
-    },
-    toAbout(){
-      this.$router.push('/about')
     }
   }
 }
